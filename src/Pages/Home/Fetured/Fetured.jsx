@@ -5,6 +5,7 @@ const Fetured = () => {
   return (
     <div className="featured-bg bg-fixed pt-20">
       <SectionTitle
+        isColored="white"
         subHeading={"check it out"}
         heading={"FROM OUR MENU"}
       ></SectionTitle>
