@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import Banner from "./Banner/Banner";
 import BistroBoss from "./BistroBoss/BistroBoss";
 import Categories from "./Category/Categories";
@@ -10,6 +11,10 @@ import Testimonials from "./Testimonials/Testimonials";
 const Home = () => {
   return (
     <div>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Bistro Boss || HOME</title>
+      </Helmet>
       <Banner></Banner>
       <Categories></Categories>
       <BistroBoss></BistroBoss>

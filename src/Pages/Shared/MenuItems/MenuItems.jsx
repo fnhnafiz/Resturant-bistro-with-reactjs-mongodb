@@ -5,7 +5,7 @@ const MenuItems = ({ menuItem }) => {
     <div className="flex gap-6">
       <img
         style={{ borderRadius: "0 200px 200px 200px" }}
-        className="w-24 ring-4 ring-red-500"
+        className="w-24 h-24 object-cover ring-4 ring-red-500"
         src={image}
         alt=""
       />

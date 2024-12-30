@@ -18,7 +18,7 @@ const Testimonials = () => {
       .then((data) => setRevies(data));
   }, []);
   return (
-    <div>
+    <div className="my-24">
       <SectionTitle
         subHeading={"what out client say"}
         heading={"Testimonial"}
@@ -26,7 +26,7 @@ const Testimonials = () => {
       <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
         {reviews?.map((review) => (
           <SwiperSlide key={review.id}>
-            <div className="p-24 text-center  flex flex-col gap-6 items-center">
+            <div className="px-24  text-center  flex flex-col gap-6 items-center">
               <Rating
                 style={{ maxWidth: 180 }}
                 value={review.rating}
