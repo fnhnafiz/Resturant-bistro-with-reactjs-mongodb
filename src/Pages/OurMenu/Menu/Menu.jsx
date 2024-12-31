@@ -40,7 +40,7 @@ const Menu = () => {
       <div className="my-20">
         <MenuCategory
           items={dessert}
-          title="Desserts"
+          title="desserts"
           description={
             "Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
           }
@@ -51,7 +51,7 @@ const Menu = () => {
       <div className="my-20">
         <MenuCategory
           items={pizza}
-          title="Pizza"
+          title="pizza"
           description={
             "Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
           }

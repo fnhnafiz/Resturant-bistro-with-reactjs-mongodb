@@ -4,11 +4,15 @@ import Navbar from "../../Pages/Shared/Navbar/Navbar";
 
 const Main = () => {
   return (
-    <div className="container mx-auto">
-      <header>
-        <Navbar></Navbar>
-      </header>
-      <Outlet></Outlet>
+    <div>
+      <div className="container mx-auto">
+        <header>
+          <Navbar></Navbar>
+        </header>
+        <main>
+          <Outlet></Outlet>
+        </main>
+      </div>
       <footer>
         <Footer></Footer>
       </footer>
