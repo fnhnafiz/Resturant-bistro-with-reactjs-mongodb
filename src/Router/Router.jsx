@@ -3,6 +3,8 @@ import Main from "../Components/Main/Main";
 import Home from "../Pages/Home/Home";
 import Menu from "../Pages/OurMenu/Menu/Menu";
 import OrderFoodItems from "../Pages/OrderFoodItems/OrderFoodItems";
+import Login from "../Components/Login/Login";
+import Register from "../Register/Register";
 
 const Router = createBrowserRouter([
   {
@@ -22,6 +24,14 @@ const Router = createBrowserRouter([
         element: <OrderFoodItems></OrderFoodItems>,
       },
     ],
+  },
+  {
+    path: "/login",
+    element: <Login></Login>,
+  },
+  {
+    path: "/register",
+    element: <Register></Register>,
   },
 ]);
 

@@ -3,9 +3,14 @@ import HeaderBanner from "../../Shared/HeaderBanner/HeaderBanner";
 import MenuItems from "../../Shared/MenuItems/MenuItems";
 
 const MenuCategory = ({ items, coverImage, title, description }) => {
+  // console.log("from menu category", title);
+  // const [titless, setTitless] = useState("");
+  // useEffect(() => {
+  //   setTitless(title);
+  // }, []);
   return (
     <div>
-      {title && (
+      {title !== "offered" && (
         <HeaderBanner
           image={coverImage}
           title={title}

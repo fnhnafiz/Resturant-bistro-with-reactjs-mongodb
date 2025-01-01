@@ -6,3 +6,9 @@
 html {
   font-family: "Inter", serif;
 }
+.react-tabs__tab--selected {
+  color: red !important;
+  border: none !important;
+  text-decoration: underline;
+  font-weight: 600;
+}

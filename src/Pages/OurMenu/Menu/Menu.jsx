@@ -25,7 +25,7 @@ const Menu = () => {
       </Helmet>
       <HeaderBanner
         image={menuImage}
-        title={"Our menu"}
+        title={"our menu"}
         description={"Would you like to try dish"}
       ></HeaderBanner>
       {/* Offer Menu Items */}
@@ -34,7 +34,7 @@ const Menu = () => {
           subHeading={"Don't miss"}
           heading={"Today's offer"}
         ></SectionTitle>
-        <MenuCategory items={offered}></MenuCategory>
+        <MenuCategory title={"offered"} items={offered}></MenuCategory>
       </div>
       {/* Dessert Items */}
       <div className="my-20">

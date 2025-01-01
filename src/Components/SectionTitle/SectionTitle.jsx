@@ -1,5 +1,5 @@
 const SectionTitle = ({ heading, subHeading, isColored }) => {
-  console.log(isColored);
+  // console.log(isColored);
   return (
     <div className="w-4/12 mx-auto text-center my-12">
       <p className="text-[#D99904] pb-4 italic text-xl">---{subHeading}---</p>
