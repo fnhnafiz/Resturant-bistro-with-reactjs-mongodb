@@ -1,5 +1,56 @@
+import Swal from "sweetalert2";
+import useAuth from "../../Hooks/useAuth";
+import { useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
+import useCart from "../../Hooks/useCart";
+
 const FoodCard = ({ card }) => {
-  const { name, image, price, recipe } = card;
+  const { name, image, price, recipe, _id } = card;
+  const { user } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [cart, refetch] = useCart();
+  // const from = location.state?.from?.pathname || "/";
+
+  const handleAddToCart = (card) => {
+    console.log(card);
+    if (user && user?.email) {
+      const cartItem = {
+        cartId: _id,
+        email: user?.email,
+        name,
+        image,
+        price,
+        recipe,
+      };
+      axios.post("http://localhost:5000/add-to-cart", cartItem).then((res) => {
+        console.log(res.data);
+        if (res.data.insertedId) {
+          Swal.fire({
+            title: `Added ${name}  Successfully!!`,
+            icon: "success",
+            draggable: true,
+          });
+          refetch();
+        }
+      });
+    } else {
+      Swal.fire({
+        title: "You are login in your account?",
+        text: "Please login first then add to cart",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Please Login!!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/login", { state: { from: location } });
+        }
+      });
+    }
+  };
+
   return (
     <div className="card bg-base-100 shadow-xl">
       <figure>
@@ -12,7 +63,10 @@ const FoodCard = ({ card }) => {
           ${price}
         </p>
         <div className="card-actions justify-end">
-          <button className="btn border-0 border-b-2 btn-outline block mx-auto uppercase">
+          <button
+            onClick={() => handleAddToCart(card)}
+            className="btn border-0 border-b-2 btn-outline block mx-auto uppercase"
+          >
             Add to card
           </button>
         </div>

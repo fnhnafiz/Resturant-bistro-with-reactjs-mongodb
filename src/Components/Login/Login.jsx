@@ -8,7 +8,7 @@ import {
   FaUserCircle,
 } from "react-icons/fa";
 import { FaArrowCircleLeft } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import {
   loadCaptchaEnginge,
@@ -22,6 +22,10 @@ const Login = () => {
   const { handleSignInUser } = useContext(AuthContext);
 
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || "/";
+  console.log("login state from loginpage", location.state);
 
   useEffect(() => {
     loadCaptchaEnginge(6);
@@ -36,7 +40,7 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        navigate("/");
+        navigate(from, { replace: true });
       })
       .catch((error) => console.log(error.message));
 

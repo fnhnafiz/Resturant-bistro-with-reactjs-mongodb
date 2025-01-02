@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import orderCoverImage from "../../../src/assets/shop/banner2.jpg";
 import HeaderBanner from "../Shared/HeaderBanner/HeaderBanner";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
@@ -18,11 +18,11 @@ const OrderFoodItems = () => {
     "offered",
   ];
   const { category } = useParams();
-  console.log(category);
+  // console.log(category);
 
   const initialIndex = categories.indexOf(category);
   const [tabIndex, setTabIndex] = useState(initialIndex);
-  console.log(initialIndex);
+  // console.log(initialIndex);
   const [menu] = useMenu();
   // console.log(category);
   const dessert = menu.filter((item) => item.category === "dessert");

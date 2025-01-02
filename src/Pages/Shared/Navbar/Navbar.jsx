@@ -1,9 +1,14 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Provider/AuthProvider";
+import { IoCartOutline } from "react-icons/io5";
+import useCart from "../../../Hooks/useCart";
 
 const Navbar = () => {
   const { logOut, user } = useContext(AuthContext);
+
+  const [cart] = useCart();
+
   const handleLogOut = () => {
     logOut().then(() => {
       alert("Log out");
@@ -72,13 +77,19 @@ const Navbar = () => {
           </li>
         </ul>
       </div>
-      <div className="navbar-end">
+      <div className="navbar-end ">
+        <Link to="/dashboard">
+          <button className="btn mr-2">
+            <IoCartOutline className="text-3xl" /> <p>Add to Cart</p>
+            <div className="badge badge-secondary">{cart.length}+</div>
+          </button>
+        </Link>
         {user ? (
           <>
             <Link to="/">
               <button
                 onClick={handleLogOut}
-                className="btn btn-outline border-0 border-b"
+                className="btn btn-outline border-0 border-b text-white "
               >
                 Log Out
               </button>

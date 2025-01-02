@@ -5,6 +5,8 @@ import Menu from "../Pages/OurMenu/Menu/Menu";
 import OrderFoodItems from "../Pages/OrderFoodItems/OrderFoodItems";
 import Login from "../Components/Login/Login";
 import Register from "../Register/Register";
+import Dashboard from "../Components/Dashboad/Dashboard";
+import MyCart from "../Pages/DashboardPages/MyCart/MyCart";
 
 const Router = createBrowserRouter([
   {
@@ -22,6 +24,16 @@ const Router = createBrowserRouter([
       {
         path: "/order-food-items/:category",
         element: <OrderFoodItems></OrderFoodItems>,
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: <Dashboard></Dashboard>,
+    children: [
+      {
+        index: true,
+        element: <MyCart></MyCart>,
       },
     ],
   },

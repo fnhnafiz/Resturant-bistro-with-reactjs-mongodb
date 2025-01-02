@@ -13,19 +13,26 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 
 const Register = () => {
-  const { handleCreateNewUser } = useContext(AuthContext);
+  const { handleCreateNewUser, updateUserProfile, logOut } =
+    useContext(AuthContext);
   const navigate = useNavigate();
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
     // console.log(data);
     handleCreateNewUser(data.email, data.password).then((result) => {
       const newUser = result.user;
+      logOut();
       navigate("/login");
       console.log(newUser);
+      updateUserProfile(data.name, data.photoURL).then(() => {
+        alert("update profile successfully!");
+        reset();
+      });
     });
   };
   //   console.log(watch("name"));
@@ -56,6 +63,22 @@ const Register = () => {
                 placeholder="Type Your Name"
               />
               {errors.name && (
+                <span className="text-red-500">This field is required</span>
+              )}
+            </div>
+            <div className="flex items-center border rounded-md shadow-sm">
+              <span className="px-3 bg-gray-200 text-gray-600">
+                <FaUser />
+              </span>
+              <input
+                {...register("photoURL", { required: true })}
+                // required
+                name="photoURL"
+                type="text"
+                className="flex-1 p-2 rounded-r-md focus:outline-none"
+                placeholder="Photo URL"
+              />
+              {errors.photoURL && (
                 <span className="text-red-500">This field is required</span>
               )}
             </div>
