@@ -7,6 +7,8 @@ import Login from "../Components/Login/Login";
 import Register from "../Register/Register";
 import Dashboard from "../Components/Dashboad/Dashboard";
 import MyCart from "../Pages/DashboardPages/MyCart/MyCart";
+import PrivateRoutes from "../SecureRoute/PrivateRoutes";
+import AllUsers from "../Pages/DashboardPages/AllUsers/AllUsers";
 
 const Router = createBrowserRouter([
   {
@@ -29,11 +31,19 @@ const Router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <Dashboard></Dashboard>,
+    element: (
+      <PrivateRoutes>
+        <Dashboard></Dashboard>
+      </PrivateRoutes>
+    ),
     children: [
       {
         index: true,
         element: <MyCart></MyCart>,
+      },
+      {
+        path: "/dashboard/all-users",
+        element: <AllUsers></AllUsers>,
       },
     ],
   },

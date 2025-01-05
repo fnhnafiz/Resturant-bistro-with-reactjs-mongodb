@@ -11,10 +11,14 @@ import {
 } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
+import useAxiosPublic from "../Hooks/useAxiosPublic";
+import toast from "react-hot-toast";
+import SocialLogin from "../Components/SocialLogin/SocialLogin";
 
 const Register = () => {
   const { handleCreateNewUser, updateUserProfile, logOut } =
     useContext(AuthContext);
+  const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
   const {
     register,
@@ -29,9 +33,19 @@ const Register = () => {
       logOut();
       navigate("/login");
       console.log(newUser);
-      updateUserProfile(data.name, data.photoURL).then(() => {
-        alert("update profile successfully!");
-        reset();
+      updateUserProfile(data?.name, data?.photoURL).then(() => {
+        const registerUser = {
+          name: data.name,
+          email: data.email,
+        };
+        // user save in database when new user register in the website;
+        axiosPublic.post("/users", registerUser).then((res) => {
+          console.log(res.data.insertedId);
+          if (res.data.insertedId) {
+            toast.success("Register Succesfully!!");
+            reset;
+          }
+        });
       });
     });
   };
@@ -143,9 +157,7 @@ const Register = () => {
           <button className="hover:text-blue-500 focus:outline-none">
             <FaTwitter />
           </button>
-          <button className="hover:text-blue-500 focus:outline-none">
-            <FaGoogle />
-          </button>
+          <SocialLogin></SocialLogin>
         </div>
       </div>
     </div>

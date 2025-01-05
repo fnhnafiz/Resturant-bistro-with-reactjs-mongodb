@@ -16,6 +16,7 @@ import {
   validateCaptcha,
 } from "react-simple-captcha";
 import { AuthContext } from "../../Provider/AuthProvider";
+import SocialLogin from "../SocialLogin/SocialLogin";
 const Login = () => {
   const [disabled, setDisabled] = useState(true);
   //   const captchaRef = useRef(null);
@@ -141,9 +142,7 @@ const Login = () => {
           <button className="hover:text-blue-500 focus:outline-none">
             <FaTwitter />
           </button>
-          <button className="hover:text-blue-500 focus:outline-none">
-            <FaGoogle />
-          </button>
+          <SocialLogin></SocialLogin>
         </div>
       </div>
     </div>
