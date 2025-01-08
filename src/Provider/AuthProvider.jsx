@@ -9,6 +9,9 @@ import {
 } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import auth from "../Firsebase/firebase.config";
+import useAxiosPublic from "../Hooks/useAxiosPublic";
+
+// import { useNavigate } from "react-router-dom";
 
 export const AuthContext = createContext(null);
 
@@ -16,6 +19,8 @@ const AuthProvider = ({ children }) => {
   const googleProvider = new GoogleAuthProvider();
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const axiosPublic = useAxiosPublic();
+  // const navigate = useNavigate();
 
   const handleGoogleSign = () => {
     setLoading(true);
@@ -33,6 +38,7 @@ const AuthProvider = ({ children }) => {
 
   const logOut = () => {
     setLoading(true);
+    // navigate("/login");
     return signOut(auth);
   };
 
@@ -45,12 +51,23 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unSubscrive = onAuthStateChanged(auth, (currentuser) => {
       setUser(currentuser);
+      if (currentuser) {
+        const userInfo = { email: currentuser.email };
+        axiosPublic.post("/jwt", userInfo).then((res) => {
+          // console.log(res.data);
+          if (res.data.token) {
+            localStorage.setItem("token", res.data.token);
+          }
+        });
+      } else {
+        localStorage.removeItem("token");
+      }
       setLoading(false);
     });
     return () => {
       return unSubscrive();
     };
-  }, []);
+  }, [axiosPublic]);
 
   const userInfo = {
     user,

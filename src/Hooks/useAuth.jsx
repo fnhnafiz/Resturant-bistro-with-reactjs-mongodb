@@ -3,6 +3,7 @@ import { AuthContext } from "../Provider/AuthProvider";
 
 const useAuth = () => {
   const auth = useContext(AuthContext);
+  // console.log(logOut, "form six");
   return auth;
 };
 

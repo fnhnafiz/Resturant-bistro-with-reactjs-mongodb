@@ -9,6 +9,10 @@ import Dashboard from "../Components/Dashboad/Dashboard";
 import MyCart from "../Pages/DashboardPages/MyCart/MyCart";
 import PrivateRoutes from "../SecureRoute/PrivateRoutes";
 import AllUsers from "../Pages/DashboardPages/AllUsers/AllUsers";
+import AdminPrivateRoutes from "../SecureRoute/AdminPrivateRoutes";
+import AddItems from "../Pages/DashboardPages/AddItems/AddItems";
+import ManageItems from "../Pages/DashboardPages/ManageItems/ManageItems";
+import UpdateItems from "../Pages/DashboardPages/UpdateItems/UpdateItems";
 
 const Router = createBrowserRouter([
   {
@@ -43,7 +47,29 @@ const Router = createBrowserRouter([
       },
       {
         path: "/dashboard/all-users",
-        element: <AllUsers></AllUsers>,
+        element: (
+          <AdminPrivateRoutes>
+            <AllUsers></AllUsers>
+          </AdminPrivateRoutes>
+        ),
+      },
+      {
+        path: "/dashboard/manage-items",
+        element: (
+          <AdminPrivateRoutes>
+            <ManageItems></ManageItems>
+          </AdminPrivateRoutes>
+        ),
+      },
+      {
+        path: "/dashboard/add-items",
+        element: <AddItems></AddItems>,
+      },
+      {
+        path: "/dashboard/update/:id",
+        element: <UpdateItems></UpdateItems>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/menu/${params.id}`),
       },
     ],
   },

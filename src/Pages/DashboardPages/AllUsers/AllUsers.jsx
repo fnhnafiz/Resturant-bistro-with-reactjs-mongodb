@@ -12,7 +12,6 @@ const AllUsers = () => {
       return res.data;
     },
   });
-  //   console.log(users);
 
   const handleUpdateUser = (user) => {
     console.log(user._id);
