@@ -14,9 +14,11 @@ import {
 } from "react-icons/fa";
 import { Link, Outlet } from "react-router-dom";
 import useAdmin from "../../Hooks/useAdmin";
+import useCart from "../../Hooks/useCart";
 
 const Dashboard = () => {
   const [isAdmin] = useAdmin();
+  const [cart] = useCart();
   return (
     <div className="flex">
       {/* left sidebar */}
@@ -86,7 +88,7 @@ const Dashboard = () => {
                     <span>Reservation</span>
                   </li>
                 </Link>
-                <Link to="/dashboard/payment">
+                <Link to="/dashboard/payment-history">
                   <li className="flex items-center space-x-2">
                     <FaHistory />
                     <span>Payment History</span>
@@ -95,7 +97,7 @@ const Dashboard = () => {
                 <Link to="/dashboard/cart">
                   <li className="flex items-center space-x-2">
                     <FaShoppingCart />
-                    <span>My Cart</span>
+                    <span>My Cart ({cart.length})</span>
                   </li>
                 </Link>
                 <Link to="/dashboard/review">

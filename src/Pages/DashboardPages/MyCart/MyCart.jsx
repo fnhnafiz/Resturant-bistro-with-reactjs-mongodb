@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import useCart from "../../../Hooks/useCart";
 import MyCartTable from "../MyCartTable/MyCartTable";
 
@@ -14,7 +15,15 @@ const MyCart = () => {
           <p>Total Price: {totalPrice}$ </p>
         </div>
         <div>
-          <button className="btn btn-ghost">Pay</button>
+          {cart.length > 0 ? (
+            <Link to={`/dashboard/payment`}>
+              <button className="btn btn-ghost">Pay</button>
+            </Link>
+          ) : (
+            <button disabled className="btn btn-ghost">
+              Pay
+            </button>
+          )}
         </div>
       </div>
       {/* Table data*/}

@@ -13,6 +13,8 @@ import AdminPrivateRoutes from "../SecureRoute/AdminPrivateRoutes";
 import AddItems from "../Pages/DashboardPages/AddItems/AddItems";
 import ManageItems from "../Pages/DashboardPages/ManageItems/ManageItems";
 import UpdateItems from "../Pages/DashboardPages/UpdateItems/UpdateItems";
+import Payment from "../Pages/Payment/Payment";
+import PaymentHistory from "../Pages/Payment/PaymentHistory";
 
 const Router = createBrowserRouter([
   {
@@ -41,10 +43,20 @@ const Router = createBrowserRouter([
       </PrivateRoutes>
     ),
     children: [
+      // User handle section
       {
-        index: true,
+        path: "cart",
         element: <MyCart></MyCart>,
       },
+      {
+        path: "/dashboard/payment",
+        element: <Payment></Payment>,
+      },
+      {
+        path: "/dashboard/payment-history",
+        element: <PaymentHistory></PaymentHistory>,
+      },
+      // Admin access
       {
         path: "/dashboard/all-users",
         element: (

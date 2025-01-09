@@ -3,9 +3,12 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import { IoCartOutline } from "react-icons/io5";
 import useCart from "../../../Hooks/useCart";
+// import useAdmin from "../../../Hooks/useAdmin";
 
 const Navbar = () => {
   const { logOut, user } = useContext(AuthContext);
+  // const [isAdmin] = useAdmin();
+  // console.log(isAdmin);
 
   const [cart] = useCart();
 
@@ -78,6 +81,21 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end ">
+        {/* {isAdmin ? (
+          <Link to="/dashboard">
+            <button className="btn mr-2">
+              <IoCartOutline className="text-3xl" /> <p>Add to Cart</p>
+              <div className="badge badge-secondary">{cart.length}+</div>
+            </button>
+          </Link>
+        ) : (
+          <Link to="/dashboard/cart">
+            <button className="btn mr-2">
+              <IoCartOutline className="text-3xl" /> <p>Add to Cart</p>
+              <div className="badge badge-secondary">{cart.length}+</div>
+            </button>
+          </Link>
+        )} */}
         <Link to="/dashboard">
           <button className="btn mr-2">
             <IoCartOutline className="text-3xl" /> <p>Add to Cart</p>
