@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import { IoCartOutline } from "react-icons/io5";
 import useCart from "../../../Hooks/useCart";
-// import useAdmin from "../../../Hooks/useAdmin";
+import useAdmin from "../../../Hooks/useAdmin";
 
 const Navbar = () => {
   const { logOut, user } = useContext(AuthContext);
-  // const [isAdmin] = useAdmin();
+  const [isAdmin] = useAdmin();
   // console.log(isAdmin);
 
   const [cart] = useCart();
@@ -47,9 +47,16 @@ const Navbar = () => {
             <li>
               <Link>Contact US</Link>
             </li>
-            <li>
-              <Link>DASHBOARD</Link>
-            </li>
+            {user && isAdmin && (
+              <li>
+                <Link to="/dashboard/admin-home">DASHBOARD</Link>
+              </li>
+            )}
+            {user && !isAdmin && (
+              <li>
+                <Link to="/dashboard/user-home">DASHBOARD</Link>
+              </li>
+            )}
             <li>
               <Link to="/our-menu">Our Menu</Link>
             </li>
@@ -69,9 +76,16 @@ const Navbar = () => {
           <li>
             <Link>Contact US</Link>
           </li>
-          <li>
-            <Link>DASHBOARD</Link>
-          </li>
+          {user && isAdmin && (
+            <li>
+              <Link to="/dashboard/admin-home">DASHBOARD</Link>
+            </li>
+          )}
+          {user && !isAdmin && (
+            <li>
+              <Link to="/dashboard/user-home">DASHBOARD</Link>
+            </li>
+          )}
           <li>
             <Link to="/our-menu">Our Menu</Link>
           </li>

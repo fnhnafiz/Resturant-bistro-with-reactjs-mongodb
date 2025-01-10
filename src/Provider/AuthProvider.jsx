@@ -57,12 +57,13 @@ const AuthProvider = ({ children }) => {
           // console.log(res.data);
           if (res.data.token) {
             localStorage.setItem("token", res.data.token);
+            setLoading(false);
           }
         });
       } else {
         localStorage.removeItem("token");
+        setLoading(false);
       }
-      setLoading(false);
     });
     return () => {
       return unSubscrive();
